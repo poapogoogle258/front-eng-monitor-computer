@@ -16,9 +16,9 @@ export default function App(){
     const [loadfinish,setloadfinish] = useState(false)
     const [selectName,setSelectName] = useState('all')
 
-    const endpoint = 'http://localhost:3000'
+    const endpoint = "http://monitor.obotrons.net:3000"
     const socket = socketIOClient(endpoint,{
-        autoConnect : false,
+        autoConnect : true,
         // reconnection: false
     })
 
@@ -85,8 +85,12 @@ export default function App(){
             let status;
             let history;
 
+
+            const dataa = await fetch(`${endpoint}/api/history`)
+            console.log(dataa)
+
             await socket.open()
-            
+  	    console.log(endpoint)          
             socket.emit('listen','join_room_status',(data) => {
                 status = data.status
                 history = data.history.map(his => {

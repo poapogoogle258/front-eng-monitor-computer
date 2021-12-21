@@ -65,7 +65,7 @@ export default function History(pros) {
 
     useEffect(() => {
         async function getData() {
-            const hostServer  = 'http://localhost:3000'
+            const hostServer  = 'http://monitor.obotrons.net:3000'
             const res = await fetch(`${hostServer}/api/history/${date}`)
             if (res.status == 200) {
                 const datalog = await res.json()
